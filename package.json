@@ -6,7 +6,8 @@
   "dependencies": {
     "an-array-of-english-words": "^1.2.0",
     "command": "^0.0.5",
-    "react-scripts": "^0.8.5"
+    "config": "^3.2.4",
+    "react-scripts": "^3.3.0"
   },
   "devDependencies": {},
   "scripts": {
