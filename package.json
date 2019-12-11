@@ -1,7 +1,7 @@
 {
-  "name": "hangmen-react",
+  "name": "hangmen-react-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "game",
   "main": "index.js",
   "dependencies": {
     "an-array-of-english-words": "^1.2.0",
