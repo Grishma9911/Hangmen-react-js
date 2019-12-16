@@ -17,6 +17,12 @@ const Games_results = sequelize.define('game_results', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     player: Sequelize.STRING,
     result: Sequelize.INTEGER,
+    created_at: Sequelize.DATE,
+    updated_at: Sequelize.DATE
+}, {
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
 
 module.exports = {

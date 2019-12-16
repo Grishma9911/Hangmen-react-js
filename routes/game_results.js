@@ -23,7 +23,7 @@ const db = require('../config/model');
   router.post("/", async function(req, res) {
     console.log("Game Data:");
     console.log(req.body);
-    await db.Games_results.create({player:req.body.player, result:req.body.results})
+    await db.Games_results.create({player:req.body.player, result:req.body.result})
     res.send({message:"Data added successfully!"})
   });
 

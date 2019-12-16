@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import gameFactory from './game-state-factory';
 import { GAME_WON, GAME_STARTED, GAME_OVER } from './game-states';
@@ -7,6 +8,8 @@ import AppFooter from './AppFooter';
 import Game from './Game';
 
 import './App.css';
+
+const SERVER_URL = "http://localhost:3001"
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +40,6 @@ class App extends Component {
 
   onLetterClick(letter, e) {
     e.preventDefault();
-
     const firstIndex = this.state.word.indexOf(letter)
     if (firstIndex !== -1) {
       const letters = this.state.letters.map(letterObject => {
@@ -54,6 +56,12 @@ class App extends Component {
       const gameWon = letters.reduce((winState, currentObject) => {
         return winState && currentObject.guessed;
       }, true);
+
+      if(gameWon){
+        this.updateStatusToDB(1);
+      }
+
+      console.log("Inside App.js file:::::::::::",gameWon)
 
       this.setState((prevState, props) => {
         return {
@@ -73,6 +81,7 @@ class App extends Component {
         // Kill the game if needed
         if (guessesLeft === 0) {
           stateUpdate.gameState = GAME_OVER;
+          this.updateStatusToDB(0);
         }
 
         // Update the letters already tried
@@ -81,6 +90,14 @@ class App extends Component {
         return stateUpdate;
       });
     }
+  }
+
+  updateStatusToDB(result){
+    axios.post(`${SERVER_URL}/api/results`, { player:"Greeshma", result})
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
   }
 
   onRestartClick(e) {
