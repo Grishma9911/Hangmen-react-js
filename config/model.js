@@ -1,7 +1,25 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize("game", "root", "Grishu9911@", {
-    host: 'localhost',
+let dbCOnfig = {
+    db: "game",
+    username: "root",
+    password: "Grishu9911@",
+    port: 3306,
+    host: 'localhost'
+}
+
+if (process.env.NODE_ENV === "production") {
+    dbCOnfig = {
+        db: "vwyw0nq1f0lr4img",
+        username: "hzx71diy5kswop7o",
+        password: "q2cxw6jmzu4ufzac",
+        port: 3306,
+        host: 'a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+    }
+}
+
+const sequelize = new Sequelize(dbCOnfig.db, dbCOnfig.username, dbCOnfig.password, {
+    host: dbCOnfig.host,
     port: 3306,
     dialect: 'mysql',
     pool: {
